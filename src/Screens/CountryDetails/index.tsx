@@ -63,8 +63,14 @@ const CountryDetails = () => {
     if (countryDetails) {
       nativeName = Object.keys(countryDetails?.name?.nativeName).map(
         (nativeName: string) => {
-          if (countryDetails?.name?.nativeName[nativeName])
+          if (
+            countryDetails?.name?.nativeName[
+              nativeName as keyof typeof countryDetails.name.nativeName
+            ]
+          ) {
+            /* @ts-ignore */
             nativeName = countryDetails?.name?.nativeName[nativeName]?.common;
+          }
           return nativeName;
         },
       );
@@ -75,7 +81,7 @@ const CountryDetails = () => {
   return (
     <div className="bg-primary-50 dark:bg-primary-dark-50 flex items-center justify-center pt-20">
       <div className=" w-11/12">
-        <button className="hover:shadow-lg hover:bg-primary-300 dark:hover:bg-primary-dark-300 bg-primary-200 dark:bg-primary-dark-200 items-center rounded-sm px-6 py-1 sm:px-[26px] sm:py-2 md:mt-10">
+        <button className="hover:bg-primary-300 dark:hover:bg-primary-dark-300 bg-primary-200 dark:bg-primary-dark-200 items-center rounded-sm px-6 py-1 hover:shadow-lg sm:px-[26px] sm:py-2 md:mt-10">
           <Link to="/">
             <div>
               <FontAwesomeIcon
@@ -152,6 +158,7 @@ const CountryDetails = () => {
                         (currencyCode: string, index: number) => {
                           return (
                             <span key={index} className="font-thin">
+                              {/* @ts-ignore */}
                               {countryDetails?.currencies[currencyCode].name}
                             </span>
                           );
@@ -165,6 +172,7 @@ const CountryDetails = () => {
                             (currency: string, index: number) => {
                               return (
                                 <span key={index} className="font-thin">
+                                  {/* @ts-ignore */}
                                   {countryDetails?.languages[currency]}{" "}
                                 </span>
                               );
@@ -187,7 +195,7 @@ const CountryDetails = () => {
                           to={`/details/${borderCountryName}`}
                         >
                           <button
-                            className="hover:shadow-lg hover:bg-primary-300 dark:hover:bg-primary-dark-300 bg-primary-200 dark:bg-primary-dark-200 mb-3 ml-3 px-4 py-1 text-xs font-thin"
+                            className="hover:bg-primary-300 dark:hover:bg-primary-dark-300 bg-primary-200 dark:bg-primary-dark-200 mb-3 ml-3 px-4 py-1 text-xs font-thin hover:shadow-lg"
                             key={index}
                           >
                             {borderCountryName}{" "}
