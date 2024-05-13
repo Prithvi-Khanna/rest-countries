@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    @apply transition-colors duration-100
+}
+html,
+body,
+#root,
+.app{
+    height: 100vh;
+    width: 100vw;
+    font-family: "Nunito Sans";
+    @apply bg-primary-50 dark:bg-primary-dark-50 text-primary-100 dark:text-primary-dark-100 sm:text-base text-sm
+}
